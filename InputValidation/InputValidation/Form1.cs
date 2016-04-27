@@ -26,6 +26,8 @@ namespace InputValidation
             if (!Regex.IsMatch(txtPhone.Text, @"^((\(\d{3}\)?)|(\d{3}-))?\d{3}-\d{4}$"))
                 MessageBox.Show("The phone number is not a valid US phone number");
 
+            txtPhone.Text = ReformatPhone(txtPhone.Text);
+
             if (!Regex.IsMatch(txtEmail.Text, 
                 @"^([a-zA-Z0-9_\-” [email protected]\.]+)@((\[[0-9]{1,3}" + 
                 @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" + 
