@@ -36,9 +36,12 @@ namespace CreateClass
         }
 
 
-        public Person()
+        public Person(SerializationInfo info, StreamingContext context)
         {
-
+            info.AddValue("Name", name);
+            info.AddValue("DOB", birthDate);
+            name = info.GetString("Name");
+            birthDate = info.GetDateTime("DOB");
         }
 
         public Person(string Name, DateTime birthDate)
@@ -59,5 +62,7 @@ namespace CreateClass
         void IDeserializationCallback.OnDeserialization(Object sender)
         {
         }
+
+       
     }
 }

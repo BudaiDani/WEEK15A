@@ -9,13 +9,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CreateClass
 {
-    class Program
+    class Program : ISerializable
     {
         static void Main(string[] args)
         {
             Employee Budai = new Employee("Dani", DateTime.Now, 1000, "HS");
             Budai.Room = new Room(111);
-            Employee Budai2 = (Employee)Budai.Clone();
+            Employee Budai2 = (Employee) Budai.Clone();
             Budai2.Room.Number = 112;
 
             Console.WriteLine(Budai.ToString());
@@ -36,7 +36,7 @@ namespace CreateClass
             fs.Close();
         }
 
-       
+
 
         private static Person Deserialize()
         {
@@ -46,11 +46,16 @@ namespace CreateClass
 
             BinaryFormatter bf = new BinaryFormatter();
 
-            dsp = (Person)bf.Deserialize(fs);
+            dsp = (Person) bf.Deserialize(fs);
 
             fs.Close();
 
             return dsp;
+        }
+
+        public virtual void GetObjectData(SerializationInfo info,
+            StreamingContext context)
+        {
         }
     }
 }
