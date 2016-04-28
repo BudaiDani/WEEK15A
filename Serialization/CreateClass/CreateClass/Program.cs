@@ -32,5 +32,20 @@ namespace CreateClass
 
             fs.Close();
         }
+
+        private static Person Deserialize()
+        {
+            Person dsp = new Person();
+
+            FileStream fs = new FileStream("Person.Dat", FileMode.Open);
+
+            BinaryFormatter bf = new BinaryFormatter();
+
+            dsp = (Person)bf.Deserialize(fs);
+
+            fs.Close();
+
+            return dsp;
+        }
     }
 }
