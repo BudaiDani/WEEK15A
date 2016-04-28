@@ -15,12 +15,15 @@ namespace CreateClass
         {
             Employee Budai = new Employee("Dani", DateTime.Now, 1000, "HS");
             Budai.Room = new Room(111);
-            Employee Kovacs2 = (Employee)Budai.Clone();
-            Kovacs2.Room.Number = 112;
+            Employee Budai2 = (Employee)Budai.Clone();
+            Budai2.Room.Number = 112;
 
             Console.WriteLine(Budai.ToString());
-            Console.WriteLine(Kovacs2.ToString());
+            Console.WriteLine(Budai2.ToString());
             Console.ReadKey();
+            Serialize(Budai);
+            Serialize(Budai2);
+            Deserialize();
         }
 
         private static void Serialize(Person sp)
@@ -32,6 +35,8 @@ namespace CreateClass
 
             fs.Close();
         }
+
+       
 
         private static Person Deserialize()
         {

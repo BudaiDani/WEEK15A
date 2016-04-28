@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace CreateClass
 {
     [Serializable]
-    class Person
+    class Person : IDeserializationCallback
     {
         private string name;
 
@@ -25,6 +25,16 @@ namespace CreateClass
             get { return birthDate; }
             set { birthDate = value; }
         }
+
+        [NonSerialized]
+        public int age;
+
+        public int Age
+        {
+            get { return age; }
+            set { age = value; }
+        }
+
 
         public Person()
         {
@@ -44,6 +54,10 @@ namespace CreateClass
         public override string ToString()
         {
             return (String.Format("name: {0}, birth date: {1}", this.name, this.birthDate));
+        }
+
+        void IDeserializationCallback.OnDeserialization(Object sender)
+        {
         }
     }
 }
